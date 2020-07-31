@@ -26,3 +26,6 @@ app.get("*", (req, res) => {
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}!`);
 });
+
+// NEXT: Create separate routes folder and files and start
+// by creating Route for GET /api/workouts
