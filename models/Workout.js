@@ -6,6 +6,7 @@ const WorkoutSchema = new Schema({
   day: {
     type: Date,
   },
+  // Give exercises more validation later
   exercises: {
     type: [],
   },
