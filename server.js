@@ -19,12 +19,12 @@ mongoose.connect(MONGODB_URI, {
   useFindAndModify: false,
 });
 
-app.get("*", (req, res) => {
-  res.send("<h1>Hello, World</h1>");
-});
+// routes
+app.use(require("./routes/api-routes.js"));
+app.use(require("./routes/html-routes.js"));
 
 app.listen(PORT, () => {
-  console.log(`App running on port ${PORT}!`);
+  console.log(`App running on port ${PORT}! Check out http://localhost:8080/`);
 });
 
 // NEXT: Create separate routes folder and files and start
