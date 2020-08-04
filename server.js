@@ -16,7 +16,7 @@ app.use(express.static("public"));
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/workout";
 mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true,
-  useFindAndModify: false,
+  useFindAndModify: false
 });
 
 // routes
@@ -26,6 +26,3 @@ app.use(require("./routes/html-routes.js"));
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}! Check out http://localhost:8080/`);
 });
-
-// NEXT: Create separate routes folder and files and start
-// by creating Route for GET /api/workouts

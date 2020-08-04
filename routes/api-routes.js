@@ -3,35 +3,43 @@ const Workout = require("../models/Workout.js");
 
 router.get("/api/workouts", (req, res) => {
   Workout.find()
-    .then((dbWorkout) => {
-      res.json(dbWorkout);
+    .sort({ day: 1 })
+    .then(workouts => {
+      res.json(workouts.map(w => w.toObject({ virtuals: true })));
     })
-    .catch((err) => {
+    .catch(err => {
       res.json(err);
     });
 });
 
 router.post("/api/workouts", (req, res) => {
   Workout.create({})
-    .then((dbWorkout) => {
-      res.json(dbWorkout);
+    .then(workouts => {
+      res.json(workouts);
     })
-    .catch((err) => {
+    .catch(err => {
       res.json(err);
     });
 });
 
 router.put("/api/workouts/:id", ({ body, params }, res) => {
-    Workout.findByIdAndUpdate(
-      params.id,
-      { $push: { exercises: body } },
-    )
-      .then(dbWorkout => {
-        res.json(dbWorkout);
-      })
-      .catch(err => {
-        res.json(err);
-      });
-  });
+  Workout.findByIdAndUpdate(params.id, { $push: { exercises: body } })
+    .then(workouts => {
+      res.json(workouts);
+    })
+    .catch(err => {
+      res.json(err);
+    });
+});
+
+router.get("/api/workouts/range", (req, res) => {
+  Workout.find()
+    .then(workouts => {
+      res.json(workouts);
+    })
+    .catch(err => {
+      res.json(err);
+    });
+});
 
 module.exports = router;
